@@ -1,0 +1,46 @@
+{
+  "projectType": "library",
+  "root": "libs/ngx-pusher",
+  "sourceRoot": "libs/ngx-pusher/src",
+  "prefix": "gg",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": [
+        "dist/libs/ngx-pusher"
+      ],
+      "options": {
+        "project": "libs/ngx-pusher/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-pusher/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-pusher/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ngx-pusher"
+      ],
+      "options": {
+        "jestConfig": "libs/ngx-pusher/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngx-pusher/src/**/*.ts",
+          "libs/ngx-pusher/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  pusherAppKey: '<PUSHER-APP-KEY>',
+  pusherCluster: '<PUSHER-CLUSTER>',
 };
 
 /*

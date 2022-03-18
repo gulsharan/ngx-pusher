@@ -1,0 +1,31 @@
+{
+  "name": "ngx-pusher",
+  "version": "0.0.9",
+  "author": {
+    "name": "Gulsharan Goraya",
+    "email": "gulsharan@gmail.com"
+  },
+  "homepage": "https://github.com/gulsharan/ngx-pusher",
+  "license": "MIT",
+  "publishConfig": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gulsharan/ngx-pusher"
+  },
+  "bugs": {
+    "url": "https://github.com/gulsharan/ngx-pusher/issues"
+  },
+  "keywords": [
+    "angular",
+    "pusher"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "rxjs": "^6.5.3 || ^7.4.0"
+  },
+  "dependencies": {
+    "pusher-js": ">=7.0.6",
+    "tslib": "^2.3.0"
+  }
+}
