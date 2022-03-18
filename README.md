@@ -11,7 +11,7 @@ npm install --save ngx-pusher
 ```
 
 ### 2. Create custom authorizer [OPTIONAL]
-Your authorizer class must implement the [NgxPusherAuthorizer](/libs/ngx-pusher/src/lib/interface.ts) interface.
+Your authorizer class must implement the [NgxPusherAuthorizer](https://github.com/gulsharan/ngx-pusher/blob/ba56dd98b50d4ca57a706df995a0b0c4a7e9a2a9/libs/ngx-pusher/src/lib/interface.ts#L10) interface.
 ```typescript
 export class CustomPusherAuthorizer implements NgxPusherAuthorizer {
   constructor(private http: HttpClient) {}
