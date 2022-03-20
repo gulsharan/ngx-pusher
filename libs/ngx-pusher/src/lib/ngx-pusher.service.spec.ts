@@ -2,12 +2,14 @@
 import { TestBed } from '@angular/core/testing';
 import { createSpyObj } from 'jest-createspyobj';
 import PusherJs, { Channel } from 'pusher-js';
+import { take, toArray } from 'rxjs/operators';
 
 import { NgxPusherFactoryService } from './ngx-pusher-factory.service';
 import { NgxPusherService } from './ngx-pusher.service';
 
 describe('NgxPusherService', () => {
   const greetingEvent = 'ev:greeting';
+  const meetingEvent = 'ev:meeting';
   const defaultChannel = 'default-channel';
   const givenChannel = 'given-channel';
 
@@ -63,9 +65,10 @@ describe('NgxPusherService', () => {
     beforeEach(() => {
       channel.bind.mockImplementation(
         (eventName: string, callback: any, context?: any) => {
-          expect(eventName).toBe(greetingEvent);
           expect(context).toBeUndefined();
-          callback('Hello, World');
+          if (eventName === meetingEvent)
+            callback(`[${eventName}] Nice to meet you!`);
+          else callback(`[${eventName}] Hello, World`);
           return channel;
         },
       );
@@ -76,7 +79,7 @@ describe('NgxPusherService', () => {
       service
         .listen<string>(greetingEvent, givenChannel)
         .subscribe((message) => {
-          expect(message).toBe('Hello, World');
+          expect(message).toBe('[ev:greeting] Hello, World');
           done();
         });
       expect(pusher.subscribe).toHaveBeenCalledWith(givenChannel);
@@ -85,7 +88,7 @@ describe('NgxPusherService', () => {
     it('should bind to the default channel if a channel not explicitly specified', (done) => {
       service.setupDefaultChannel(defaultChannel);
       service.listen<string>(greetingEvent).subscribe((message) => {
-        expect(message).toBe('Hello, World');
+        expect(message).toBe('[ev:greeting] Hello, World');
         done();
       });
       expect(pusher.subscribe).toHaveBeenCalledWith(defaultChannel);
@@ -96,7 +99,7 @@ describe('NgxPusherService', () => {
       service
         .listen<string>(greetingEvent, givenChannel)
         .subscribe((message) => {
-          expect(message).toBe('Hello, World');
+          expect(message).toBe('[ev:greeting] Hello, World');
           done();
         });
       expect(pusher.subscribe).toHaveBeenCalledWith(givenChannel);
@@ -111,6 +114,21 @@ describe('NgxPusherService', () => {
         expect(e.message).toBe('No channel specified.');
         expect(pusher.subscribe).not.toHaveBeenCalled();
       }
+    });
+
+    it('should allow listening for multiple events', (done) => {
+      service.setupDefaultChannel(defaultChannel);
+      service
+        .listen<string>([greetingEvent, meetingEvent], givenChannel)
+        .pipe(take(2), toArray())
+        .subscribe((message) => {
+          expect(message).toEqual([
+            '[ev:greeting] Hello, World',
+            '[ev:meeting] Nice to meet you!',
+          ]);
+          done();
+        });
+      expect(pusher.subscribe).toHaveBeenCalledWith(givenChannel);
     });
   });
 

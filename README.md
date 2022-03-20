@@ -1,7 +1,7 @@
 # Ngx-Pusher
 
 A library for adding [PusherJs](https://www.npmjs.com/package/pusher-js) to your Angular 13+ app.
- It allows you to seamlessly subscribe to Pusher channels and operate on Observable streams of events.
+It allows you to seamlessly subscribe to Pusher channels and operate on Observable streams of events.
 
 ## Steps
 
@@ -79,7 +79,7 @@ export class MyMessageHandlerService {
   constructor(pusherService: NgxPuserServicee) {
     // Default channel
     pusherService
-      .listen<ChatMessage>('message-received')
+      .listen<ChatMessage>('ev:message')
       .subscribe((msg: ChatMessage) => {
         console.log('Message Received', msg.content);
       });
@@ -111,4 +111,13 @@ export class MyMessageHandlerService {
     const pusher = pusherService.pusherInstance();
   }
 }
+```
+# Subscribe to multiple events on the same channel
+You can subscribe to more than one event on the same channel by passing in an array of event names.
+```typescript
+pusherService
+  .listen<ChatMessage>(['ev:message', 'ev:meeting-request'])
+  .subscribe((msg: ChatMessage) => {
+    console.log('Message Received', msg.content);
+});
 ```

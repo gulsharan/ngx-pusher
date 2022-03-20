@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import PusherJs, { Channel } from 'pusher-js';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { merge, Observable, ReplaySubject, Subject } from 'rxjs';
 
 import { NgxPusherFactoryService } from './ngx-pusher-factory.service';
 
@@ -15,13 +15,22 @@ export class NgxPusherService {
     this._pusher = pusherFactory.createPusher();
   }
 
-  private _on<T>(eventName: string, channel: Channel): Observable<T> {
+  private _getStream<T>(eventName: string, channel: Channel): Observable<T> {
     if (!this._streams[eventName]) {
       const stream = new ReplaySubject<T>();
       channel.bind(eventName, (data: T) => stream.next(data));
       this._streams[eventName] = stream;
     }
     return this._streams[eventName];
+  }
+
+  private _on<T>(
+    eventName: string | string[],
+    channel: Channel,
+  ): Observable<T> {
+    return Array.isArray(eventName)
+      ? merge(...eventName.map((_) => this._getStream<T>(_, channel)))
+      : this._getStream<T>(eventName, channel);
   }
 
   private _getChannel(channelName: string): Channel {
@@ -60,7 +69,7 @@ export class NgxPusherService {
    * @param eventName
    * @param channelName
    */
-  listen<T>(eventName: string, channelName?: string): Observable<T> {
+  listen<T>(eventName: string | string[], channelName?: string): Observable<T> {
     const name = channelName
       ? this._getChannel(channelName)
       : this._defaultChannel;
@@ -73,7 +82,7 @@ export class NgxPusherService {
    * @param eventName
    * @param channelName
    */
-  on<T>(eventName: string, channelName?: string): Observable<T> {
+  on<T>(eventName: string | string[], channelName?: string): Observable<T> {
     return this.listen(eventName, channelName);
   }
 }
