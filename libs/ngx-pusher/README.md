@@ -1,8 +1,6 @@
 <div style="text-align:center">
 
-  <h3>
-    ngx-pusher
-  </h3>
+# ngx-pusher
 
   <p>
     Lightweight Angular library for integrating Pusher into Angular applications.
