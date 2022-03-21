@@ -1,6 +1,6 @@
 {
   "name": "ngx-pusher",
-  "version": "0.0.0",
+  "version": "0.2.1",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
