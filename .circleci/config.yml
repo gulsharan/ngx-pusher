@@ -22,3 +22,15 @@ jobs:
       - run:
           name: Run Lint
           command: yarn nx affected --target=lint --base=$NX_BASE --parallel
+
+workflows:
+  build:
+    jobs:
+      - main:
+          filters:
+            branches:
+              only: main
+      - pr:
+          filters:
+            branches:
+              ignore: main
