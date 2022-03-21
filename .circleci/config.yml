@@ -13,15 +13,15 @@ jobs:
           name: Install dependencies
           command: yarn install --frozen-lockfile
       - nx/set-shas
-      # - run:
-      #     name: Run Builds
-      #     command: yarn nx affected --target=build --base=$NX_BASE --parallel
+      - run:
+          name: Run Builds
+          command: yarn build:ci
       - run:
           name: Run Unit Tests
-          command: yarn test
+          command: yarn test:ci
       - run:
           name: Run Lint
-          command: yarn lint
+          command: yarn lint:ci
 
 workflows:
   run-ci:
