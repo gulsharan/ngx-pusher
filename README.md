@@ -1,18 +1,11 @@
-<div style="text-align:center">
-
 # ngx-pusher
+Lightweight Angular library for integrating Pusher into Angular applications.
 
-  <p>
-    Lightweight Angular library for integrating Pusher into Angular applications.
-  </p>
-
-  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/gulsharan/ngx-pusher)](https://github.com/gulsharan/ngx-pusher/releases)
-  [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ngx-pusher)](https://bundlephobia.com/package/ngx-pusher)
-  [![NPM](https://img.shields.io/npm/l/ngx-pusher)](https://github.com/gulsharan/ngx-pusher/blob/main/LICENSE)
-  [![CircleCI](https://img.shields.io/circleci/build/gh/gulsharan/ngx-pusher?token=b9fff275a3dc37e1c72bba5dc27bb3d99075488e)](https://app.circleci.com/pipelines/github/gulsharan/ngx-pusher)
-  [![GitHub issues](https://img.shields.io/github/issues/gulsharan/ngx-pusher)](https://github.com/gulsharan/ngx-pusher/issues)
-
-</div>
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/gulsharan/ngx-pusher)](https://github.com/gulsharan/ngx-pusher/releases)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/ngx-pusher)](https://bundlephobia.com/package/ngx-pusher)
+[![NPM](https://img.shields.io/npm/l/ngx-pusher)](https://github.com/gulsharan/ngx-pusher/blob/main/LICENSE)
+[![CircleCI](https://img.shields.io/circleci/build/gh/gulsharan/ngx-pusher?token=b9fff275a3dc37e1c72bba5dc27bb3d99075488e)](https://app.circleci.com/pipelines/github/gulsharan/ngx-pusher)
+[![GitHub issues](https://img.shields.io/github/issues/gulsharan/ngx-pusher)](https://github.com/gulsharan/ngx-pusher/issues)
 
 ## Table Of Contents
 
