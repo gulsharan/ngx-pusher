@@ -12,7 +12,8 @@ Lightweight Angular library for integrating Pusher into Angular applications.
 - [About](#about)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
-- [Subscribe to multiple events](#subscribe-to-multiple-events)
+  - [PusherJs Instance](#pusherjs-instance)
+  - [Subscribe to multiple events](#subscribe-to-multiple-events)
 - [Contributing](#contributing)
 - [License](#license)
 
